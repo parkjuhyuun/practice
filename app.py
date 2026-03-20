@@ -45,33 +45,45 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
 /* SECTION */
 .sec-head { font-size:1.1rem; font-weight:600; color:var(--text); margin-bottom:0.2rem; }
 .sec-sub  { font-size:0.79rem; color:var(--sub); line-height:1.65; margin-bottom:1.2rem; }
-.col-label { font-size:0.75rem; font-weight:600; letter-spacing:0.05em; color:var(--sub); padding-bottom:0.6rem; border-bottom:1px solid var(--border); margin-bottom:0.8rem; }
+.col-label { font-size:0.75rem; font-weight:600; letter-spacing:0.05em; color:var(--sub); padding-bottom:0.6rem; border-bottom:1px solid var(--border); margin-bottom:0.9rem; }
 
-/* ★ 핵심: 선택 완료 뱃지 */
+/* ── 슬롯: 선택 전 아이콘 카드 ── */
+.slot-idle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface);
+    border: 1.5px dashed var(--border);
+    border-radius: 14px;
+    padding: 1.1rem 0.5rem;
+    text-align: center;
+    gap: 0.35rem;
+    min-height: 88px;
+    cursor: pointer;
+}
+.slot-idle .slot-icon { font-size: 1.8rem; line-height: 1; }
+.slot-idle .slot-hint { font-size: 0.72rem; color: #B0A840; }
+
+/* ── 슬롯: 선택 완료 뱃지 ── */
 .sel-badge {
-    display: flex; align-items: center; gap: 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
     background: var(--surface);
     border: 2px solid var(--accent2);
-    border-radius: 12px; padding: 0.75rem 1rem;
-    cursor: pointer; position: relative;
+    border-radius: 14px;
+    padding: 0.8rem 1rem;
 }
 .sel-badge .sb-dot  { width:28px; height:28px; border-radius:50%; flex-shrink:0; border:2px solid rgba(0,0,0,0.08); }
 .sel-badge .sb-body { flex:1; min-width:0; }
-.sel-badge .sb-name { font-weight:600; font-size:0.88rem; color:var(--text); line-height:1.3; }
-.sel-badge .sb-shade { font-size:0.78rem; color:var(--sub); margin-top:0.1rem; }
-.sel-badge .sb-tags  { margin-top:0.3rem; }
-.sel-badge .sb-edit  { font-size:0.7rem; color:var(--accent); white-space:nowrap; }
+.sel-badge .sb-name  { font-weight:600; font-size:0.86rem; color:var(--text); line-height:1.3; }
+.sel-badge .sb-shade { font-size:0.76rem; color:var(--sub); margin-top:0.08rem; }
+.sel-badge .sb-tags  { margin-top:0.3rem; line-height:1.8; }
+.sel-badge .sb-check { font-size:0.7rem; color:var(--accent); white-space:nowrap; }
 
-/* 비어있는 슬롯 (선택 전) */
-.empty-slot {
-    display:flex; align-items:center; gap:0.6rem;
-    background: var(--surface); border:1.5px dashed var(--border);
-    border-radius:12px; padding:0.7rem 1rem; color:#BBA840;
-    font-size:0.8rem; cursor:pointer;
-}
-
-/* TAGS */
-.tag { display:inline-block; padding:0.15rem 0.6rem; border-radius:100px; font-size:0.68rem; font-weight:500; margin:0.06rem; }
+/* ── TAGS ── */
+.tag { display:inline-block; padding:0.15rem 0.6rem; border-radius:100px; font-size:0.68rem; font-weight:500; margin:0.05rem; }
 .t-warm   { background:#FFF3C0; color:#7A5A00; }
 .t-cool   { background:#E8F4FF; color:#304080; }
 .t-spring { background:#FFEECC; color:#9A5800; }
@@ -85,7 +97,7 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
 /* DOT */
 .dot { display:inline-block; border-radius:50%; border:1.5px solid rgba(0,0,0,0.1); vertical-align:middle; flex-shrink:0; }
 
-/* PRODUCT CARD */
+/* PCARD */
 .pcard { display:flex; align-items:center; gap:0.7rem; background:var(--surface); border:1px solid var(--border); border-radius:11px; padding:0.75rem 0.9rem; margin-bottom:0.45rem; }
 .pcard-info { flex:1; min-width:0; }
 .pcard-name  { font-weight:500; font-size:0.84rem; line-height:1.3; }
@@ -105,8 +117,13 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
 .ib-cool { background:linear-gradient(135deg,#F0F4FF,#E0E8FF); border:1px solid #A8B8E0; }
 
 /* BUTTON */
-.stButton > button { background:var(--accent) !important; color:#fff !important; border:none !important; border-radius:9px !important; padding:0.6rem 1.8rem !important; font-size:0.86rem !important; font-weight:500 !important; width:100% !important; transition:opacity 0.15s !important; }
-.stButton > button:hover { opacity:0.8 !important; }
+.stButton > button {
+    background: var(--accent) !important; color:#fff !important;
+    border:none !important; border-radius:9px !important;
+    padding:0.6rem 1.8rem !important; font-size:0.86rem !important;
+    font-weight:500 !important; width:100% !important;
+}
+.stButton > button:hover { opacity:0.82 !important; }
 
 /* SELECTBOX */
 .stSelectbox label { font-size:0.78rem !important; color:var(--sub) !important; }
@@ -121,10 +138,23 @@ details summary { font-size:0.8rem !important; color:var(--sub) !important; }
 
 
 # ══════════════════════════════════════════════════════════════
+# 카테고리 아이콘 (깨지지 않는 텍스트 이모지만 사용)
+# ══════════════════════════════════════════════════════════════
+CAT_ICON = {
+    "lip":    "💄",
+    "blush":  "🌸",
+    "shadow": "✨",
+    "base":   "🧴",   # 🫧 깨짐 → 🧴 로 교체
+    None:     "💋",
+}
+CAT_KR = {"lip":"💄 립","blush":"🌸 블러셔","shadow":"✨ 섀도우","base":"🧴 베이스"}
+SEA_KR = {"spring":"봄 웜","autumn":"가을 웜","summer":"여름 쿨","winter":"겨울 쿨"}
+
+
+# ══════════════════════════════════════════════════════════════
 # DB
 # ══════════════════════════════════════════════════════════════
 DB = {
-    # ── LIP ─────────────────────────────────────────────────
     "롬앤 쥬시 래스팅 틴트": {
         "06 피그피그":           dict(tone="cool",season=["summer","winter"],  chroma=2,value=2,category="lip",hex="#C47090",avail=True, note="물광 마감, 뮤트 로즈",              new=False),
         "07 쥬쥬브":             dict(tone="warm",season=["spring","autumn"],  chroma=3,value=2,category="lip",hex="#C45858",avail=True, note="생기있는 레드베리",                new=False),
@@ -141,23 +171,23 @@ DB = {
         "06 소프트월넛":         dict(tone="warm",season=["autumn"],           chroma=1,value=2,category="lip",hex="#906858",avail=True, note="웜 누드, 피부 밀착",              new=False),
         "08 베리핑크":           dict(tone="cool",season=["summer"],           chroma=3,value=3,category="lip",hex="#C870A0",avail=True, note="선명 핑크, 여름 포인트",          new=False),
         "11 진저브라운":         dict(tone="warm",season=["autumn"],           chroma=2,value=2,category="lip",hex="#8A5040",avail=False,note="깊은 진저브라운 ★단종",           new=False),
-        "12 스트로베리소다":     dict(tone="cool",season=["spring","summer"],  chroma=3,value=3,category="lip",hex="#E06898",avail=True, note="청량 딸기소다 — 2024 출시",       new=True),
+        "12 스트로베리소다":     dict(tone="cool",season=["spring","summer"],  chroma=3,value=3,category="lip",hex="#E06898",avail=True, note="청량 딸기소다 — 2024",            new=True),
     },
     "페리페라 잉크 무드 글로이 틴트": {
         "01 쿨오프코랄":         dict(tone="warm",season=["spring"],           chroma=3,value=3,category="lip",hex="#E07860",avail=True, note="밝은 코랄오렌지",                 new=False),
         "03 맘찍로즈":           dict(tone="cool",season=["summer"],           chroma=2,value=3,category="lip",hex="#D088A0",avail=True, note="뮤트 로즈핑크",                   new=False),
         "06 초코브릭":           dict(tone="warm",season=["autumn"],           chroma=2,value=2,category="lip",hex="#8A4838",avail=True, note="초콜릿 브릭 레드",                new=False),
         "09 코랄프레쉬":         dict(tone="warm",season=["spring"],           chroma=3,value=3,category="lip",hex="#E06848",avail=True, note="생생한 코랄",                     new=False),
-        "14 누드로즈우드":       dict(tone="cool",season=["summer","winter"],  chroma=1,value=2,category="lip",hex="#A87888",avail=True, note="쿨 누드로즈우드 — 2024 신규",     new=True),
-        "15 라벤더쇼크":         dict(tone="cool",season=["summer"],           chroma=2,value=3,category="lip",hex="#B890C8",avail=True, note="라벤더빛 쿨핑크 — 2024 신규",     new=True),
+        "14 누드로즈우드":       dict(tone="cool",season=["summer","winter"],  chroma=1,value=2,category="lip",hex="#A87888",avail=True, note="쿨 누드로즈우드 — 2024",          new=True),
+        "15 라벤더쇼크":         dict(tone="cool",season=["summer"],           chroma=2,value=3,category="lip",hex="#B890C8",avail=True, note="라벤더빛 쿨핑크 — 2024",          new=True),
     },
     "클리오 쉬폰 블러 틴트": {
         "03 피치퍼즐":           dict(tone="warm",season=["spring","autumn"],  chroma=2,value=3,category="lip",hex="#D89080",avail=True, note="스모키 피치",                     new=False),
         "05 코랄":               dict(tone="warm",season=["spring"],           chroma=2,value=3,category="lip",hex="#DC7060",avail=True, note="클래식 코랄",                     new=False),
         "07 로즈":               dict(tone="cool",season=["summer","winter"],  chroma=3,value=3,category="lip",hex="#C86890",avail=True, note="청량한 로즈",                     new=False),
         "09 레드브릭":           dict(tone="warm",season=["autumn"],           chroma=3,value=2,category="lip",hex="#A03830",avail=True, note="벽돌빛 레드",                     new=False),
-        "13 쿨핑크클라우드":     dict(tone="cool",season=["summer"],           chroma=2,value=3,category="lip",hex="#D880B0",avail=True, note="구름 같은 쿨핑크 — 2024 출시",    new=True),
-        "14 웜테라누드":         dict(tone="warm",season=["autumn"],           chroma=1,value=2,category="lip",hex="#9A6050",avail=True, note="웜 테라코타 누드 — 2024 출시",    new=True),
+        "13 쿨핑크클라우드":     dict(tone="cool",season=["summer"],           chroma=2,value=3,category="lip",hex="#D880B0",avail=True, note="구름 같은 쿨핑크 — 2024",         new=True),
+        "14 웜테라누드":         dict(tone="warm",season=["autumn"],           chroma=1,value=2,category="lip",hex="#9A6050",avail=True, note="웜 테라코타 누드 — 2024",         new=True),
     },
     "3CE 벨벳 립 틴트": {
         "파우더핑크":            dict(tone="cool",season=["summer"],           chroma=1,value=3,category="lip",hex="#D8A8B8",avail=True, note="파우더리 쿨핑크 누드",            new=False),
@@ -165,8 +195,8 @@ DB = {
         "러스티로즈":            dict(tone="cool",season=["summer","winter"],  chroma=2,value=2,category="lip",hex="#A87080",avail=True, note="빈티지 로즈",                     new=False),
         "퍼스트데이트":          dict(tone="warm",season=["spring"],           chroma=2,value=3,category="lip",hex="#E09898",avail=True, note="밝은 베이비핑크",                 new=False),
         "누드플럼":              dict(tone="cool",season=["winter"],           chroma=2,value=1,category="lip",hex="#7A5068",avail=True, note="딥 누드 플럼",                    new=False),
-        "코코아무드":            dict(tone="warm",season=["autumn"],           chroma=1,value=2,category="lip",hex="#8A5848",avail=True, note="코코아 웜 브라운 — 2024 신규",    new=True),
-        "쿨라일락":              dict(tone="cool",season=["summer"],           chroma=2,value=3,category="lip",hex="#C0A0D0",avail=True, note="연한 쿨 라일락 — 2024 신규",      new=True),
+        "코코아무드":            dict(tone="warm",season=["autumn"],           chroma=1,value=2,category="lip",hex="#8A5848",avail=True, note="코코아 웜 브라운 — 2024",         new=True),
+        "쿨라일락":              dict(tone="cool",season=["summer"],           chroma=2,value=3,category="lip",hex="#C0A0D0",avail=True, note="연한 쿨 라일락 — 2024",           new=True),
     },
     "맥 리프스틱": {
         "Whirl":                 dict(tone="warm",season=["autumn"],           chroma=1,value=2,category="lip",hex="#906060",avail=True, note="국민 누드브라운, 가을 완벽템",    new=False),
@@ -183,30 +213,28 @@ DB = {
         "17 코코넛누드":         dict(tone="warm",season=["spring","autumn"],  chroma=1,value=3,category="lip",hex="#C8A080",avail=True, note="밀크누드, 일상 쓰기 좋은",        new=False),
     },
     "투쿨포스쿨 아트클래스 바이 로댕 틴트": {
-        "01 로제":               dict(tone="cool",season=["summer"],           chroma=2,value=3,category="lip",hex="#D890A8",avail=True, note="그라데이션 쿨로즈 — 2024 출시",   new=True),
-        "02 베이지테라":         dict(tone="warm",season=["autumn"],           chroma=1,value=2,category="lip",hex="#A07860",avail=True, note="그라데이션 웜베이지 — 2024 출시", new=True),
-        "03 버건디":             dict(tone="cool",season=["winter"],           chroma=3,value=2,category="lip",hex="#903060",avail=True, note="그라데이션 버건디 — 2024 출시",   new=True),
+        "01 로제":               dict(tone="cool",season=["summer"],           chroma=2,value=3,category="lip",hex="#D890A8",avail=True, note="그라데이션 쿨로즈 — 2024",        new=True),
+        "02 베이지테라":         dict(tone="warm",season=["autumn"],           chroma=1,value=2,category="lip",hex="#A07860",avail=True, note="그라데이션 웜베이지 — 2024",      new=True),
+        "03 버건디":             dict(tone="cool",season=["winter"],           chroma=3,value=2,category="lip",hex="#903060",avail=True, note="그라데이션 버건디 — 2024",        new=True),
     },
     "어퓨 쥬시 팝 틴트 2024": {
-        "01 코튼캔디핑크":       dict(tone="cool",season=["spring","summer"],  chroma=2,value=3,category="lip",hex="#E890B8",avail=True, note="솜사탕 쿨핑크 — 2024 출시",       new=True),
-        "02 망고코랄":           dict(tone="warm",season=["spring"],           chroma=3,value=3,category="lip",hex="#E8804A",avail=True, note="망고빛 코랄오렌지 — 2024 출시",  new=True),
-        "03 피그플럼":           dict(tone="cool",season=["winter"],           chroma=3,value=2,category="lip",hex="#903868",avail=True, note="무화과 플럼 — 2024 출시",         new=True),
+        "01 코튼캔디핑크":       dict(tone="cool",season=["spring","summer"],  chroma=2,value=3,category="lip",hex="#E890B8",avail=True, note="솜사탕 쿨핑크 — 2024",            new=True),
+        "02 망고코랄":           dict(tone="warm",season=["spring"],           chroma=3,value=3,category="lip",hex="#E8804A",avail=True, note="망고빛 코랄오렌지 — 2024",       new=True),
+        "03 피그플럼":           dict(tone="cool",season=["winter"],           chroma=3,value=2,category="lip",hex="#903868",avail=True, note="무화과 플럼 — 2024",              new=True),
     },
     "미샤 아이돌 립 글로우": {
-        "01 누드코랄":           dict(tone="warm",season=["spring","autumn"],  chroma=2,value=3,category="lip",hex="#D89070",avail=True, note="촉촉 누드코랄 — 2024 출시",       new=True),
-        "02 쿨로즈베리":         dict(tone="cool",season=["summer","winter"],  chroma=2,value=2,category="lip",hex="#C06888",avail=True, note="쿨 로즈베리 글로우 — 2024 출시",  new=True),
-        "03 웜브릭":             dict(tone="warm",season=["autumn"],           chroma=2,value=2,category="lip",hex="#A04838",avail=True, note="웜 브릭 레드 — 2024 출시",        new=True),
+        "01 누드코랄":           dict(tone="warm",season=["spring","autumn"],  chroma=2,value=3,category="lip",hex="#D89070",avail=True, note="촉촉 누드코랄 — 2024",            new=True),
+        "02 쿨로즈베리":         dict(tone="cool",season=["summer","winter"],  chroma=2,value=2,category="lip",hex="#C06888",avail=True, note="쿨 로즈베리 글로우 — 2024",       new=True),
+        "03 웜브릭":             dict(tone="warm",season=["autumn"],           chroma=2,value=2,category="lip",hex="#A04838",avail=True, note="웜 브릭 레드 — 2024",             new=True),
     },
-
-    # ── BLUSH ────────────────────────────────────────────────
     "롬앤 베러 댄 치크": {
         "피치칩":                dict(tone="warm",season=["spring","autumn"],  chroma=2,value=3,category="blush",hex="#E8A878",avail=True, note="황금 피치, 웜 피부 생기",        new=False),
         "스트로베리밀크":        dict(tone="cool",season=["summer"],           chroma=2,value=3,category="blush",hex="#D898A8",avail=True, note="딸기우유빛 쿨 핑크",             new=False),
         "코랄리프":              dict(tone="warm",season=["spring"],           chroma=3,value=3,category="blush",hex="#E89070",avail=True, note="생생한 코랄",                     new=False),
         "쿨로즈":                dict(tone="cool",season=["winter","summer"],  chroma=2,value=2,category="blush",hex="#C880A0",avail=True, note="블루베이스 쿨 로즈",             new=False),
         "누디피치":              dict(tone="warm",season=["autumn"],           chroma=1,value=2,category="blush",hex="#D0988A",avail=True, note="웜 누디 피치",                    new=False),
-        "선셋코랄":              dict(tone="warm",season=["spring","autumn"],  chroma=3,value=2,category="blush",hex="#E07858",avail=True, note="선셋빛 코랄 — 2024 신규",         new=True),
-        "라벤더드림":            dict(tone="cool",season=["summer"],           chroma=2,value=3,category="blush",hex="#C0B0D8",avail=True, note="라벤더빛 쿨 — 2024 신규",         new=True),
+        "선셋코랄":              dict(tone="warm",season=["spring","autumn"],  chroma=3,value=2,category="blush",hex="#E07858",avail=True, note="선셋빛 코랄 — 2024",              new=True),
+        "라벤더드림":            dict(tone="cool",season=["summer"],           chroma=2,value=3,category="blush",hex="#C0B0D8",avail=True, note="라벤더빛 쿨 — 2024",              new=True),
     },
     "에뛰드 러블리 쿠키 블러셔": {
         "1호 피치":              dict(tone="warm",season=["spring"],           chroma=2,value=3,category="blush",hex="#EDA880",avail=True, note="부드러운 피치",                    new=False),
@@ -230,35 +258,33 @@ DB = {
         "01 코코피치":           dict(tone="warm",season=["spring","autumn"],  chroma=2,value=3,category="blush",hex="#E0A080",avail=True, note="코코넛 피치",                       new=False),
         "02 쿨로즈퍼지":         dict(tone="cool",season=["summer"],           chroma=2,value=3,category="blush",hex="#D8A0B8",avail=True, note="퍼지 쿨 로즈핑크",                  new=False),
         "03 미드나잇플럼":       dict(tone="cool",season=["winter"],           chroma=3,value=2,category="blush",hex="#A06888",avail=True, note="딥 쿨 플럼",                        new=False),
-        "04 어텀테라":           dict(tone="warm",season=["autumn"],           chroma=2,value=2,category="blush",hex="#B07058",avail=True, note="어스 테라코타 — 2024 신규",          new=True),
-        "05 스프링코랄":         dict(tone="warm",season=["spring"],           chroma=3,value=3,category="blush",hex="#E09070",avail=True, note="봄 코랄핑크 — 2024 신규",           new=True),
+        "04 어텀테라":           dict(tone="warm",season=["autumn"],           chroma=2,value=2,category="blush",hex="#B07058",avail=True, note="어스 테라코타 — 2024",              new=True),
+        "05 스프링코랄":         dict(tone="warm",season=["spring"],           chroma=3,value=3,category="blush",hex="#E09070",avail=True, note="봄 코랄핑크 — 2024",               new=True),
     },
     "헤라 센슈얼 파우더 블러셔 2024": {
-        "01 로즈코랄":           dict(tone="warm",season=["spring","summer"],  chroma=2,value=3,category="blush",hex="#E09888",avail=True, note="로즈코랄 쉬머 — 2024 출시",         new=True),
-        "02 쿨핑크":             dict(tone="cool",season=["summer"],           chroma=2,value=3,category="blush",hex="#D898B8",avail=True, note="쿨핑크 쉬머 — 2024 출시",           new=True),
-        "03 딥테라":             dict(tone="warm",season=["autumn"],           chroma=2,value=2,category="blush",hex="#B07060",avail=True, note="딥 테라코타 쉬머 — 2024 출시",      new=True),
+        "01 로즈코랄":           dict(tone="warm",season=["spring","summer"],  chroma=2,value=3,category="blush",hex="#E09888",avail=True, note="로즈코랄 쉬머 — 2024",             new=True),
+        "02 쿨핑크":             dict(tone="cool",season=["summer"],           chroma=2,value=3,category="blush",hex="#D898B8",avail=True, note="쿨핑크 쉬머 — 2024",               new=True),
+        "03 딥테라":             dict(tone="warm",season=["autumn"],           chroma=2,value=2,category="blush",hex="#B07060",avail=True, note="딥 테라코타 쉬머 — 2024",           new=True),
     },
     "투쿨포스쿨 체크 체크 블러셔": {
-        "01 코튼피치":           dict(tone="warm",season=["spring"],           chroma=2,value=3,category="blush",hex="#EDB090",avail=True, note="코튼 피치 — 2024 출시",             new=True),
-        "02 플럼체크":           dict(tone="cool",season=["winter"],           chroma=2,value=2,category="blush",hex="#B07890",avail=True, note="플럼 쿨 — 2024 출시",               new=True),
+        "01 코튼피치":           dict(tone="warm",season=["spring"],           chroma=2,value=3,category="blush",hex="#EDB090",avail=True, note="코튼 피치 — 2024",                  new=True),
+        "02 플럼체크":           dict(tone="cool",season=["winter"],           chroma=2,value=2,category="blush",hex="#B07890",avail=True, note="플럼 쿨 — 2024",                    new=True),
     },
-
-    # ── SHADOW ──────────────────────────────────────────────
     "클리오 프로 아이 팔레트": {
         "03 앤틱핑크":           dict(tone="cool",season=["summer","winter"],  chroma=2,value=3,category="shadow",hex="#D8A8B8",avail=True, note="쿨톤 핑크 멀티",                 new=False),
         "04 브라운브릭":         dict(tone="warm",season=["autumn"],           chroma=2,value=2,category="shadow",hex="#987060",avail=True, note="웜 브라운 전문",                 new=False),
         "06 어텀테라":           dict(tone="warm",season=["autumn","spring"],  chroma=2,value=2,category="shadow",hex="#B07858",avail=True, note="테라코타 어텀",                   new=False),
         "09 스모키쿨":           dict(tone="cool",season=["winter"],           chroma=2,value=1,category="shadow",hex="#706880",avail=True, note="쿨톤 스모키 전문",               new=False),
-        "11 로즈골드":           dict(tone="warm",season=["spring","autumn"],  chroma=2,value=3,category="shadow",hex="#C09070",avail=True, note="로즈골드 웜 — 2024 신규",        new=True),
-        "12 쿨그레이":           dict(tone="cool",season=["winter","summer"],  chroma=1,value=2,category="shadow",hex="#9090A8",avail=True, note="쿨 그레이 스모키 — 2024 신규",   new=True),
+        "11 로즈골드":           dict(tone="warm",season=["spring","autumn"],  chroma=2,value=3,category="shadow",hex="#C09070",avail=True, note="로즈골드 웜 — 2024",             new=True),
+        "12 쿨그레이":           dict(tone="cool",season=["winter","summer"],  chroma=1,value=2,category="shadow",hex="#9090A8",avail=True, note="쿨 그레이 스모키 — 2024",        new=True),
     },
     "에뛰드 플레이 컬러 아이즈": {
         "베어누드":              dict(tone="warm",season=["autumn","spring"],  chroma=1,value=3,category="shadow",hex="#C8B098",avail=True, note="웜 베이지 데일리",               new=False),
         "라즈베리초콜릿":        dict(tone="cool",season=["winter","summer"],  chroma=2,value=2,category="shadow",hex="#907880",avail=True, note="쿨 다크베리",                    new=False),
         "핑크쉐이드":            dict(tone="cool",season=["summer"],           chroma=2,value=3,category="shadow",hex="#D8A8B8",avail=True, note="소프트 쿨핑크",                  new=False),
         "브라운토피":            dict(tone="warm",season=["autumn"],           chroma=2,value=2,category="shadow",hex="#987060",avail=False,note="웜 토피브라운 ★단종",            new=False),
-        "올리브그린":            dict(tone="warm",season=["autumn"],           chroma=2,value=2,category="shadow",hex="#788050",avail=True, note="올리브 어스톤 — 2024 신규",      new=True),
-        "코랄선셋":              dict(tone="warm",season=["spring"],           chroma=3,value=3,category="shadow",hex="#E09870",avail=True, note="코랄 선셋 팔레트 — 2024 신규",   new=True),
+        "올리브그린":            dict(tone="warm",season=["autumn"],           chroma=2,value=2,category="shadow",hex="#788050",avail=True, note="올리브 어스톤 — 2024",           new=True),
+        "코랄선셋":              dict(tone="warm",season=["spring"],           chroma=3,value=3,category="shadow",hex="#E09870",avail=True, note="코랄 선셋 팔레트 — 2024",        new=True),
     },
     "어반디케이 네이키드 팔레트": {
         "NAKED3":                dict(tone="cool",season=["summer","winter"],  chroma=2,value=3,category="shadow",hex="#C090A0",avail=True, note="쿨 로즈 뉴트럴 — 국내 구매가능",new=False),
@@ -276,16 +302,14 @@ DB = {
         "13 스모키그레이":       dict(tone="cool",season=["winter"],           chroma=1,value=2,category="shadow",hex="#888098",avail=True, note="쿨 스모키 그레이",               new=False),
     },
     "페리페라 인크 더 아이섀도우 팔레트 2024": {
-        "01 웜어스":             dict(tone="warm",season=["autumn"],           chroma=2,value=2,category="shadow",hex="#A07858",avail=True, note="어스톤 웜 팔레트 — 2024 출시",   new=True),
-        "02 쿨로즈":             dict(tone="cool",season=["summer","winter"],  chroma=2,value=3,category="shadow",hex="#C090A8",avail=True, note="쿨 로즈 팔레트 — 2024 출시",     new=True),
-        "03 코랄핑크":           dict(tone="warm",season=["spring"],           chroma=3,value=3,category="shadow",hex="#E09078",avail=True, note="코랄핑크 팔레트 — 2024 출시",    new=True),
+        "01 웜어스":             dict(tone="warm",season=["autumn"],           chroma=2,value=2,category="shadow",hex="#A07858",avail=True, note="어스톤 웜 팔레트 — 2024",        new=True),
+        "02 쿨로즈":             dict(tone="cool",season=["summer","winter"],  chroma=2,value=3,category="shadow",hex="#C090A8",avail=True, note="쿨 로즈 팔레트 — 2024",          new=True),
+        "03 코랄핑크":           dict(tone="warm",season=["spring"],           chroma=3,value=3,category="shadow",hex="#E09078",avail=True, note="코랄핑크 팔레트 — 2024",         new=True),
     },
     "투쿨포스쿨 아트클래스 팔레트 2024": {
-        "웜누드":                dict(tone="warm",season=["spring","autumn"],  chroma=1,value=3,category="shadow",hex="#C8A888",avail=True, note="웜 누드 아트 팔레트 — 2024",      new=True),
-        "쿨모브":                dict(tone="cool",season=["summer","winter"],  chroma=2,value=2,category="shadow",hex="#9888A8",avail=True, note="쿨 모브 아트 팔레트 — 2024",      new=True),
+        "웜누드":                dict(tone="warm",season=["spring","autumn"],  chroma=1,value=3,category="shadow",hex="#C8A888",avail=True, note="웜 누드 아트 팔레트 — 2024",     new=True),
+        "쿨모브":                dict(tone="cool",season=["summer","winter"],  chroma=2,value=2,category="shadow",hex="#9888A8",avail=True, note="쿨 모브 아트 팔레트 — 2024",     new=True),
     },
-
-    # ── BASE ────────────────────────────────────────────────
     "롬앤 그램 글로잉 사틴 파운데이션": {
         "13N 아이보리":          dict(tone="warm",season=["spring","autumn"],  chroma=1,value=3,category="base",hex="#E8C8A8",avail=True, note="웜 밝은 피부",                     new=False),
         "21N 라이트베이지":      dict(tone="warm",season=["autumn"],           chroma=1,value=3,category="base",hex="#DEC0A0",avail=True, note="웜 자연 피부",                     new=False),
@@ -298,9 +322,9 @@ DB = {
         "3C 쿨베이지":           dict(tone="cool",season=["summer","winter"],  chroma=1,value=3,category="base",hex="#D0B8A8",avail=True, note="쿨 베이지",                        new=False),
     },
     "클리오 킬 커버 파운웨어 쿠션 2024": {
-        "1W 워너비아이보리":     dict(tone="warm",season=["spring","autumn"],  chroma=1,value=3,category="base",hex="#EED0A8",avail=True, note="웜 아이보리 쿠션 — 2024 신규",      new=True),
-        "2N 내추럴베이지":       dict(tone="warm",season=["autumn"],           chroma=1,value=3,category="base",hex="#E0C0A0",avail=True, note="웜 내추럴 쿠션 — 2024 신규",        new=True),
-        "3C 쿨샌드":             dict(tone="cool",season=["summer","winter"],  chroma=1,value=3,category="base",hex="#D8C0B0",avail=True, note="쿨 샌드 쿠션 — 2024 신규",          new=True),
+        "1W 워너비아이보리":     dict(tone="warm",season=["spring","autumn"],  chroma=1,value=3,category="base",hex="#EED0A8",avail=True, note="웜 아이보리 쿠션 — 2024",           new=True),
+        "2N 내추럴베이지":       dict(tone="warm",season=["autumn"],           chroma=1,value=3,category="base",hex="#E0C0A0",avail=True, note="웜 내추럴 쿠션 — 2024",             new=True),
+        "3C 쿨샌드":             dict(tone="cool",season=["summer","winter"],  chroma=1,value=3,category="base",hex="#D8C0B0",avail=True, note="쿨 샌드 쿠션 — 2024",               new=True),
     },
 }
 
@@ -326,8 +350,6 @@ PAIRING = {
     ("winter","shadow"): [("클리오 프로 아이 팔레트","09 스모키쿨"),("어반디케이 네이키드 팔레트","NAKED3"),("투쿨포스쿨 아트클래스 팔레트 2024","쿨모브"),("클리오 프로 아이 팔레트","12 쿨그레이")],
 }
 
-CAT_KR = {"lip":"💄 립","blush":"🌸 블러셔","shadow":"✨ 섀도우","base":"🫧 베이스"}
-SEA_KR = {"spring":"봄 웜","autumn":"가을 웜","summer":"여름 쿨","winter":"겨울 쿨"}
 
 def dot_html(hex_col, size=18):
     return f'<span class="dot" style="width:{size}px;height:{size}px;background:{hex_col};"></span>'
@@ -339,18 +361,17 @@ def sea_tag(s):
     return tag_html(SEA_KR.get(s,""), f"t-{s}")
 def new_tag():
     return tag_html("✨ NEW","t-new")
-
 def pcard_html(pname, shade, d, fit=""):
-    fit_p = f'<div class="pcard-fit">{fit}</div>' if fit else ""
-    new_p = new_tag() if d.get("new") else ""
+    fp = f'<div class="pcard-fit">{fit}</div>' if fit else ""
+    np = new_tag() if d.get("new") else ""
     return f"""
 <div class="pcard">
     {dot_html(d['hex'],20)}
     <div class="pcard-info">
-        <div class="pcard-name">{pname} {new_p}</div>
+        <div class="pcard-name">{pname} {np}</div>
         <div class="pcard-shade">{shade} · {CAT_KR.get(d['category'],'')}</div>
         <div class="pcard-note">{d['note']}</div>
-    </div>{fit_p}
+    </div>{fp}
 </div>"""
 
 
@@ -374,7 +395,6 @@ def run_analysis(good_list, bad_list, best_list):
         else("겨울 비비드 쿨" if ac>=2.5 else "겨울 딥 쿨")
     return {"pc":pc,"tone":"warm" if ts>0 else "cool","season":PC[pc]["season"]}
 
-
 def get_recs(tone, season, cat=None, limit=8, new_only=False):
     p,g=[],[]
     for pn,shades in DB.items():
@@ -388,98 +408,133 @@ def get_recs(tone, season, cat=None, limit=8, new_only=False):
 
 
 # ══════════════════════════════════════════════════════════════
-# ★ 핵심 개선: 선택 완료 시 박스 접히고 뱃지만 표시
+# ★ 핵심: 슬롯 위젯
+#   - 선택 전: 아이콘만 중앙에 크게 (빈 박스 없음!)
+#   - 선택 완료: 노란 테두리 뱃지로 즉시 교체
 # ══════════════════════════════════════════════════════════════
-def product_picker(prefix, include_disc=False):
+def product_slot(prefix, slot_num, include_disc=False):
     """
-    선택 완료 → selectbox 숨기고 뱃지만 표시
-    '변경' 버튼 누르면 다시 selectbox 노출
+    상태:
+      idle   → 아이콘 카드만 표시, 클릭 시 open
+      open   → selectbox 3개 표시
+      done   → 뱃지 표시, 변경 버튼
     """
-    # session state 초기화
-    if f"{prefix}_done" not in st.session_state:
-        st.session_state[f"{prefix}_done"] = False
-    if f"{prefix}_result" not in st.session_state:
-        st.session_state[f"{prefix}_result"] = None
+    state_key  = f"{prefix}_{slot_num}_state"   # idle / open / done
+    result_key = f"{prefix}_{slot_num}_result"
+    cat_key    = f"{prefix}_{slot_num}_cat"
+    pname_key  = f"{prefix}_{slot_num}_pname"
+    shade_key  = f"{prefix}_{slot_num}_shade"
 
-    # ── 선택 완료 상태: 뱃지만 표시 ──
-    if st.session_state[f"{prefix}_done"] and st.session_state[f"{prefix}_result"]:
-        pname, shade = st.session_state[f"{prefix}_result"]
+    # 초기화
+    if state_key not in st.session_state:
+        st.session_state[state_key]  = "idle"
+        st.session_state[result_key] = None
+
+    state = st.session_state[state_key]
+
+    # ── DONE: 뱃지 ──────────────────────────────────────────
+    if state == "done" and st.session_state[result_key]:
+        pname, shade = st.session_state[result_key]
         d = DB[pname][shade]
-        disc_txt = " <span class='tag t-disc'>단종</span>" if not d["avail"] else ""
-        new_p    = new_tag() if d.get("new") else ""
-        tags_html = tone_tag(d['tone']) + " " + "".join(sea_tag(s) for s in d['season'])
-
+        disc = " <span class='tag t-disc'>단종</span>" if not d["avail"] else ""
+        np   = new_tag() if d.get("new") else ""
+        tags = tone_tag(d['tone']) + " " + "".join(sea_tag(s) for s in d['season'])
         st.markdown(f"""
 <div class="sel-badge">
     <div class="sb-dot" style="background:{d['hex']};"></div>
     <div class="sb-body">
-        <div class="sb-name">{pname} {new_p}{disc_txt}</div>
+        <div class="sb-name">{pname}{disc} {np}</div>
         <div class="sb-shade">{shade} &nbsp;·&nbsp; {CAT_KR.get(d['category'],'')}</div>
-        <div class="sb-tags">{tags_html}</div>
+        <div class="sb-tags">{tags}</div>
     </div>
-    <div class="sb-edit">선택됨 ✓</div>
+    <div class="sb-check">✓ 선택됨</div>
 </div>""", unsafe_allow_html=True)
-
-        # 변경 버튼
-        if st.button("✏️ 변경", key=f"{prefix}_change", use_container_width=False):
-            st.session_state[f"{prefix}_done"]   = False
-            st.session_state[f"{prefix}_result"] = None
+        if st.button("✏️ 변경", key=f"{prefix}_{slot_num}_edit"):
+            st.session_state[state_key]  = "idle"
+            st.session_state[result_key] = None
+            # 기존 selectbox 키 초기화
+            for k in [cat_key, pname_key, shade_key]:
+                if k in st.session_state:
+                    del st.session_state[k]
             st.rerun()
-
         return (pname, shade)
 
-    # ── 선택 중: selectbox 표시 ──
-    else:
-        # 빈 슬롯 안내 (선택 전)
-        if not st.session_state.get(f"{prefix}_pname"):
-            st.markdown(
-                '<div class="empty-slot">🔍 &nbsp; 카테고리 · 제품명 · 호수를 선택하세요</div>',
-                unsafe_allow_html=True,
-            )
-
-        cat_labels = ["전체","💄 립","🌸 블러셔","✨ 섀도우","🫧 베이스"]
-        cat_map    = {"전체":None,"💄 립":"lip","🌸 블러셔":"blush","✨ 섀도우":"shadow","🫧 베이스":"base"}
-
-        lbl = st.selectbox("카", cat_labels, key=f"{prefix}_cat", label_visibility="collapsed")
-        cat = cat_map[lbl]
-
-        pnames = sorted({
-            pn for pn, shades in DB.items()
-            for sh, d in shades.items()
-            if (cat is None or d["category"]==cat) and (include_disc or d["avail"])
-        })
-
-        pname = st.selectbox(
-            "제품명", pnames, index=None, placeholder="제품명 선택",
-            key=f"{prefix}_pname", label_visibility="collapsed"
-        )
-        if not pname:
-            return None
-
-        shade_opts = [sh for sh,d in DB[pname].items() if include_disc or d["avail"]]
-        shade = st.selectbox(
-            "호수", shade_opts, index=None, placeholder="컬러·호수 선택",
-            key=f"{prefix}_shade", label_visibility="collapsed"
-        )
-        if not shade:
-            return None
-
-        # 선택 확인 버튼
-        if st.button("✅ 선택 완료", key=f"{prefix}_confirm", use_container_width=True):
-            st.session_state[f"{prefix}_done"]   = True
-            st.session_state[f"{prefix}_result"] = (pname, shade)
+    # ── IDLE: 아이콘 카드만 ─────────────────────────────────
+    if state == "idle":
+        # 현재 선택된 카테고리로 아이콘 결정
+        cur_cat = st.session_state.get(cat_key)
+        cat_map = {"전체":None,"💄 립":"lip","🌸 블러셔":"blush","✨ 섀도우":"shadow","🧴 베이스":"base"}
+        mapped  = cat_map.get(cur_cat) if cur_cat else None
+        icon    = CAT_ICON.get(mapped, "💋")
+        st.markdown(f"""
+<div class="slot-idle">
+    <div class="slot-icon">{icon}</div>
+    <div class="slot-hint">탭하여 제품 선택</div>
+</div>""", unsafe_allow_html=True)
+        if st.button("+ 선택하기", key=f"{prefix}_{slot_num}_open", use_container_width=True):
+            st.session_state[state_key] = "open"
             st.rerun()
+        return None
 
-        # 미리보기 (확인 전)
-        d = DB[pname][shade]
-        disc = " <span class='tag t-disc'>단종</span>" if not d["avail"] else ""
-        st.markdown(
-            f"{dot_html(d['hex'],13)} {tone_tag(d['tone'])} "
-            f"{''.join(sea_tag(s) for s in d['season'])}{disc}"
-            f"<br><small style='color:#B0A860'>{d['note']}</small>",
-            unsafe_allow_html=True,
-        )
-        return None   # 확인 버튼 누르기 전엔 미반영
+    # ── OPEN: selectbox ─────────────────────────────────────
+    cat_labels = ["전체","💄 립","🌸 블러셔","✨ 섀도우","🧴 베이스"]
+    cat_map    = {"전체":None,"💄 립":"lip","🌸 블러셔":"blush","✨ 섀도우":"shadow","🧴 베이스":"base"}
+
+    chosen_lbl = st.selectbox("카테고리", cat_labels,
+                               key=cat_key, label_visibility="collapsed")
+    chosen_cat = cat_map[chosen_lbl]
+
+    # 선택된 카테고리 아이콘 중앙 표시
+    icon = CAT_ICON.get(chosen_cat, "💋")
+    st.markdown(f'<div style="text-align:center;font-size:1.6rem;margin:-0.3rem 0 0.2rem">{icon}</div>',
+                unsafe_allow_html=True)
+
+    pnames = sorted({
+        pn for pn, shades in DB.items()
+        for sh, d in shades.items()
+        if (chosen_cat is None or d["category"]==chosen_cat)
+        and (include_disc or d["avail"])
+    })
+
+    pname = st.selectbox("제품명", pnames, index=None,
+                          placeholder="제품명 선택",
+                          key=pname_key, label_visibility="collapsed")
+    if not pname:
+        if st.button("← 닫기", key=f"{prefix}_{slot_num}_close"):
+            st.session_state[state_key] = "idle"
+            st.rerun()
+        return None
+
+    shade_opts = [sh for sh,d in DB[pname].items() if include_disc or d["avail"]]
+    shade = st.selectbox("호수", shade_opts, index=None,
+                          placeholder="컬러·호수 선택",
+                          key=shade_key, label_visibility="collapsed")
+    if not shade:
+        return None
+
+    # 미리보기
+    d = DB[pname][shade]
+    st.markdown(
+        f"{dot_html(d['hex'],12)} {tone_tag(d['tone'])} "
+        f"{''.join(sea_tag(s) for s in d['season'])}"
+        f"<br><small style='color:#B0A840'>{d['note']}</small>",
+        unsafe_allow_html=True,
+    )
+
+    if st.button("✅ 선택 완료", key=f"{prefix}_{slot_num}_confirm", use_container_width=True):
+        st.session_state[state_key]  = "done"
+        st.session_state[result_key] = (pname, shade)
+        st.rerun()
+
+    return None
+
+
+def get_slot_result(prefix, slot_num):
+    """완료된 슬롯 결과 반환"""
+    key = f"{prefix}_{slot_num}_result"
+    if st.session_state.get(f"{prefix}_{slot_num}_state") == "done":
+        return st.session_state.get(key)
+    return None
 
 
 # ══════════════════════════════════════════════════════════════
@@ -489,7 +544,7 @@ def tab_analysis():
     st.markdown('<p class="sec-head">퍼스널 컬러 분석</p>', unsafe_allow_html=True)
     st.markdown(
         '<p class="sec-sub">사용해봤던 제품들을 입력하면 세부 8톤 퍼스널 컬러를 분석해드려요.<br>'
-        '<b>잘 맞았던 제품 1개</b>만 있어도 분석 가능 &nbsp;·&nbsp; 안 맞았던·반응 좋았던 제품은 각 1~3개 자유 입력</p>',
+        '<b>잘 맞았던 제품 1개</b>만 있어도 분석 가능 · 안 맞았던·반응 좋았던 제품은 각 1~3개 자유 입력</p>',
         unsafe_allow_html=True,
     )
 
@@ -501,35 +556,34 @@ def tab_analysis():
 | 👎 안 맞았던 | 칙칙해지거나 뜬다는 느낌을 받은 제품 | × −1.5 |
 | 🔥 반응 좋았던 | SNS·일상에서 특히 호평받은 제품 | × 2 |
 
-단종 제품도 입력 기록용으로 선택 가능해요.  
-제품명·호수 선택 후 **✅ 선택 완료** 버튼을 눌러주세요.
+단종 제품도 입력 기록용으로 선택 가능해요.
         """)
 
     c1, c2, c3 = st.columns(3, gap="medium")
 
     with c1:
-        st.markdown('<div class="col-label">👍 잘 맞았던 제품 &nbsp;·&nbsp; 필수 1–3개</div>', unsafe_allow_html=True)
-        g1 = product_picker("g1", include_disc=True)
+        st.markdown('<div class="col-label">👍 잘 맞았던 제품 · 필수 1–3개</div>', unsafe_allow_html=True)
+        product_slot("g", 1, include_disc=True)
         st.divider()
-        g2 = product_picker("g2", include_disc=True)
+        product_slot("g", 2, include_disc=True)
         st.divider()
-        g3 = product_picker("g3", include_disc=True)
+        product_slot("g", 3, include_disc=True)
 
     with c2:
-        st.markdown('<div class="col-label">👎 안 맞았던 제품 &nbsp;·&nbsp; 선택 1–3개</div>', unsafe_allow_html=True)
-        b1 = product_picker("b1", include_disc=True)
+        st.markdown('<div class="col-label">👎 안 맞았던 제품 · 선택 1–3개</div>', unsafe_allow_html=True)
+        product_slot("b", 1, include_disc=True)
         st.divider()
-        b2 = product_picker("b2", include_disc=True)
+        product_slot("b", 2, include_disc=True)
         st.divider()
-        b3 = product_picker("b3", include_disc=True)
+        product_slot("b", 3, include_disc=True)
 
     with c3:
-        st.markdown('<div class="col-label">🔥 반응 좋았던 제품 &nbsp;·&nbsp; 선택 1–3개</div>', unsafe_allow_html=True)
-        t1 = product_picker("t1", include_disc=True)
+        st.markdown('<div class="col-label">🔥 반응 좋았던 제품 · 선택 1–3개</div>', unsafe_allow_html=True)
+        product_slot("t", 1, include_disc=True)
         st.divider()
-        t2 = product_picker("t2", include_disc=True)
+        product_slot("t", 2, include_disc=True)
         st.divider()
-        t3 = product_picker("t3", include_disc=True)
+        product_slot("t", 3, include_disc=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
     _, bc, _ = st.columns([2,2,2])
@@ -537,9 +591,9 @@ def tab_analysis():
         clicked = st.button("🌼 퍼스널 컬러 분석하기", use_container_width=True)
 
     if clicked:
-        goods = [x for x in [g1,g2,g3] if x]
-        bads  = [x for x in [b1,b2,b3] if x]
-        bests = [x for x in [t1,t2,t3] if x]
+        goods = [get_slot_result("g", i) for i in range(1,4) if get_slot_result("g", i)]
+        bads  = [get_slot_result("b", i) for i in range(1,4) if get_slot_result("b", i)]
+        bests = [get_slot_result("t", i) for i in range(1,4) if get_slot_result("t", i)]
         if not goods:
             st.warning("잘 맞았던 제품을 최소 1개 선택 완료해주세요 😊")
             return
@@ -560,7 +614,6 @@ def _render_result(res):
     <div class="rbox-desc">{info['desc']}</div>
     <div style="margin-top:0.8rem">{kw}</div>
 </div>""", unsafe_allow_html=True)
-
     r1,r2=st.columns(2)
     with r1:
         st.markdown("**✅ 잘 어울리는 컬러**")
@@ -577,13 +630,11 @@ def _render_result(res):
         new_only=st.checkbox("✨ 2024+ 신제품",key="res_new")
     cmap={"전체":None,"💄 립":"lip","🌸 블러셔":"blush","✨ 섀도우":"shadow"}
     recs=get_recs(res["tone"],res["season"],cat=cmap[cat_ch],limit=8,new_only=new_only)
-    if not recs:
-        st.info("해당 조건의 추천 제품이 없어요."); return
+    if not recs: st.info("해당 조건의 추천 제품이 없어요."); return
     cols=st.columns(2)
     for i,(pn,sh,d) in enumerate(recs):
         fit="✨ 완벽 매칭" if res["season"] in d["season"] else "👍 어울려요"
-        with cols[i%2]:
-            st.markdown(pcard_html(pn,sh,d,fit), unsafe_allow_html=True)
+        with cols[i%2]: st.markdown(pcard_html(pn,sh,d,fit), unsafe_allow_html=True)
 
 
 # ══════════════════════════════════════════════════════════════
@@ -592,7 +643,6 @@ def _render_result(res):
 def tab_pairing():
     st.markdown('<p class="sec-head">연계 추천 서비스</p>', unsafe_allow_html=True)
     st.markdown('<p class="sec-sub">퍼스널 컬러를 선택하면 립·블러셔·섀도우를 함께 큐레이션해드려요.</p>', unsafe_allow_html=True)
-
     pc_list=list(PC.keys())
     auto=st.session_state.get("result",{}).get("pc",pc_list[0])
     idx=pc_list.index(auto) if auto in pc_list else 0
@@ -601,14 +651,12 @@ def tab_pairing():
         if st.button("🎯 분석 결과 자동 적용"):
             st.session_state["pair_pc"]=st.session_state["result"]["pc"]
             st.rerun()
-
     info=PC[pc_sel]; tone=info["tone"]; season=info["season"]
     st.markdown(f"""
 <div class="info-band {'ib-warm' if tone=='warm' else 'ib-cool'}">
     <b>{info['emoji']} {pc_sel}</b> &nbsp; {tone_tag(tone)} {sea_tag(season)}<br>
     <small style="color:#555">{info['desc']}</small>
 </div>""", unsafe_allow_html=True)
-
     st.markdown("### 💄 추천 립")
     lr=get_recs(tone,season,cat="lip",limit=6)
     lc=st.columns(3)
@@ -621,7 +669,6 @@ def tab_pairing():
     </div>
     <div style="padding-left:30px"><div class="pcard-shade">{sh}</div><div class="pcard-note">{d['note']}</div></div>
 </div>""", unsafe_allow_html=True)
-
     st.divider()
     st.markdown("### 🌸 어울리는 블러셔")
     bk=(season,"blush")
@@ -630,7 +677,6 @@ def tab_pairing():
     bc=st.columns(2)
     for i,(pn,sh,d) in enumerate(bi[:4]):
         with bc[i%2]: st.markdown(pcard_html(pn,sh,d), unsafe_allow_html=True)
-
     st.divider()
     st.markdown("### ✨ 어울리는 섀도우")
     sk=(season,"shadow")
@@ -639,7 +685,6 @@ def tab_pairing():
     sc=st.columns(2)
     for i,(pn,sh,d) in enumerate(si[:4]):
         with sc[i%2]: st.markdown(pcard_html(pn,sh,d), unsafe_allow_html=True)
-
     st.divider()
     tips={"spring":"봄 웜톤은 **밝고 산뜻한 코랄·피치 조합**이 최고예요. 골드 액세서리와도 찰떡이에요.",
           "autumn":"가을 웜톤은 **어스톤·테라코타 팔레트**로 풍부한 매력을 살려보세요. 로즈골드 쥬얼리와 잘 어울려요.",
@@ -653,59 +698,51 @@ def tab_pairing():
 # ══════════════════════════════════════════════════════════════
 def tab_today():
     st.markdown('<p class="sec-head">오늘의 뷰티 조합</p>', unsafe_allow_html=True)
-    st.markdown('<p class="sec-sub">상황·무드를 선택하면 퍼스널 컬러에 맞는 오늘의 완성 메이크업 세트를 추천해드려요.</p>', unsafe_allow_html=True)
-
+    st.markdown('<p class="sec-sub">상황·무드를 선택하면 퍼스널 컬러에 맞는 오늘의 메이크업 세트를 추천해드려요.</p>', unsafe_allow_html=True)
     pc_list=list(PC.keys())
     auto=st.session_state.get("result",{}).get("pc",pc_list[0])
     idx=pc_list.index(auto) if auto in pc_list else 0
-
     co1,co2,co3=st.columns(3)
     with co1: pc_sel=st.selectbox("내 퍼스널 컬러",pc_list,index=idx,key="today_pc")
     with co2: mood=st.selectbox("오늘의 무드",["데일리 내추럴","오피스 룩","데이트 메이크업","파티·이벤트","페스티벌"],key="today_mood")
     with co3: intensity=st.selectbox("강도",["라이트","미디엄","스트롱"],key="today_int")
-
     info=PC[pc_sel]; tone=info["tone"]; season=info["season"]
     int_map={"라이트":1,"미디엄":2,"스트롱":3}
     ci=int_map[intensity]; cmin=max(1,ci-1); cmax=min(4,ci+1)
-
-    def filtered(cat, limit=3):
+    def filtered(cat,limit=3):
         r=[]
         for pn,shades in DB.items():
             for sh,d in shades.items():
                 if not d["avail"] or d["category"]!=cat: continue
                 if not (cmin<=d["chroma"]<=cmax): continue
-                if d["tone"]==tone and season in d["season"]: r.append((pn,sh,d,"✨"))
-                elif d["tone"]==tone: r.append((pn,sh,d,"👍"))
-        r.sort(key=lambda x:0 if x[3]=="✨" else 1)
-        if not r: r=[(pn,sh,d,"👍") for pn,sh,d in get_recs(tone,season,cat=cat,limit=limit)]
+                if d["tone"]==tone and season in d["season"]: r.append((pn,sh,d))
+                elif d["tone"]==tone: r.append((pn,sh,d))
+        if not r: r=[(pn,sh,d) for pn,sh,d in get_recs(tone,season,cat=cat,limit=limit)]
         return r[:limit]
-
     st.markdown(f"""
 <div class="info-band {'ib-warm' if tone=='warm' else 'ib-cool'}">
     <b>{info['emoji']} {pc_sel}</b> &nbsp;·&nbsp; <b>{mood}</b> &nbsp;·&nbsp; <b>{intensity}</b><br>
     <small style="color:#555">아래 조합으로 오늘 메이크업을 완성해보세요 ✨</small>
 </div>""", unsafe_allow_html=True)
-
     m1,m2,m3=st.columns(3)
     for col,title,cat in [(m1,"💄 립","lip"),(m2,"🌸 블러셔","blush"),(m3,"✨ 섀도우","shadow")]:
         with col:
             st.markdown(f"**{title}**")
-            for pn,sh,d,fit in filtered(cat):
+            for pn,sh,d in filtered(cat):
                 st.markdown(f"""
 <div class="pcard" style="flex-direction:column;align-items:flex-start;gap:0.22rem;margin-bottom:0.4rem;">
     <div style="display:flex;align-items:center;gap:0.5rem">
-        {dot_html(d['hex'],20)} <b style="font-size:0.8rem;line-height:1.3">{pn} {''+new_tag() if d.get('new') else ''}</b>
+        {dot_html(d['hex'],20)} <b style="font-size:0.8rem">{pn} {''+new_tag() if d.get('new') else ''}</b>
     </div>
     <div style="padding-left:26px"><div style="font-size:0.75rem;color:#7A7230">{sh}</div>
     <div style="font-size:0.7rem;color:#A09830">{d['note']}</div></div>
 </div>""", unsafe_allow_html=True)
-
     st.divider()
-    tips={"데일리 내추럴":"💡 베이스를 가볍게 하고 립 하나로 생기를 더해보세요. 피부 표현에 집중하면 훨씬 자연스러워요.",
-          "오피스 룩":"💡 뮤트 컬러로 통일감을 주세요. 번들거림 없는 매트 마감이 프로페셔널해 보여요.",
-          "데이트 메이크업":"💡 립과 블러셔를 같은 계열로 맞추면 얼굴이 화사해 보여요. 속눈썹 컬링으로 눈을 더 크게!",
-          "파티·이벤트":"💡 포인트를 한 곳(립 또는 눈)에만 주면 과하지 않고 세련돼 보여요.",
-          "페스티벌":"💡 방수 제품을 우선 선택하세요. 글리터 섀도우를 눈꼬리에 살짝 올리면 화려함 UP!"}
+    tips={"데일리 내추럴":"💡 베이스를 가볍게 하고 립 하나로 생기를 더해보세요.",
+          "오피스 룩":"💡 뮤트 컬러로 통일감을 주세요. 매트 마감이 프로페셔널해 보여요.",
+          "데이트 메이크업":"💡 립과 블러셔를 같은 계열로 맞추면 얼굴이 화사해 보여요.",
+          "파티·이벤트":"💡 포인트를 한 곳에만 주면 과하지 않고 세련돼 보여요.",
+          "페스티벌":"💡 방수 제품을 우선 선택하세요. 글리터를 눈꼬리에 살짝 올리면 화려함 UP!"}
     st.info(tips.get(mood,""))
 
 
@@ -715,20 +752,17 @@ def tab_today():
 def tab_browse():
     st.markdown('<p class="sec-head">제품 탐색</p>', unsafe_allow_html=True)
     st.markdown('<p class="sec-sub">카테고리·톤·계절·출시연도로 필터링해서 전체 제품을 살펴보세요.</p>', unsafe_allow_html=True)
-
     f1,f2,f3,f4=st.columns(4)
-    with f1: fcat =st.selectbox("카테고리",["전체","💄 립","🌸 블러셔","✨ 섀도우","🫧 베이스"],key="br_cat")
+    with f1: fcat =st.selectbox("카테고리",["전체","💄 립","🌸 블러셔","✨ 섀도우","🧴 베이스"],key="br_cat")
     with f2: ftone=st.selectbox("톤",["전체","🌞 웜톤","❄️ 쿨톤"],key="br_tone")
     with f3: fsea =st.selectbox("계절",["전체","봄 웜","가을 웜","여름 쿨","겨울 쿨"],key="br_sea")
     with f4: fnew =st.selectbox("출시",["전체","✨ 2024+ 신제품"],key="br_new")
     show_disc=st.checkbox("단종 제품도 보기",value=False)
-
-    cmap={"전체":None,"💄 립":"lip","🌸 블러셔":"blush","✨ 섀도우":"shadow","🫧 베이스":"base"}
+    cmap={"전체":None,"💄 립":"lip","🌸 블러셔":"blush","✨ 섀도우":"shadow","🧴 베이스":"base"}
     tmap={"전체":None,"🌞 웜톤":"warm","❄️ 쿨톤":"cool"}
     smap={"전체":None,"봄 웜":"spring","가을 웜":"autumn","여름 쿨":"summer","겨울 쿨":"winter"}
     fc,ft,fs=cmap[fcat],tmap[ftone],smap[fsea]
     only_new=(fnew=="✨ 2024+ 신제품")
-
     rows=[]
     for pn,shades in DB.items():
         for sh,d in shades.items():
@@ -738,10 +772,8 @@ def tab_browse():
             if fs and fs not in d["season"]: continue
             if only_new and not d.get("new"): continue
             rows.append((pn,sh,d))
-
     st.markdown(f"<small style='color:#8A7830'>{len(rows)}개 제품</small>", unsafe_allow_html=True)
     if not rows: st.info("조건에 맞는 제품이 없어요."); return
-
     for i in range(0,len(rows),3):
         cols=st.columns(3)
         for j,(pn,sh,d) in enumerate(rows[i:i+3]):
@@ -765,7 +797,6 @@ def tab_browse():
 def tab_guide():
     st.markdown('<p class="sec-head">퍼스널 컬러 가이드</p>', unsafe_allow_html=True)
     st.markdown('<p class="sec-sub">세부 8톤의 특징과 뷰티 스타일링 팁을 한눈에 확인하세요.</p>', unsafe_allow_html=True)
-
     for pc_name,info in PC.items():
         tone=info["tone"]
         with st.expander(f"{info['emoji']}  {pc_name}"):
@@ -783,7 +814,6 @@ def tab_guide():
                 for c in info["best"]: st.markdown(f"· {c}")
                 st.markdown("**⛔ 피할 컬러**")
                 for c in info["avoid"]: st.markdown(f"· {c}")
-
             st.markdown("**🛍️ 대표 추천 제품**")
             recs=get_recs(tone,info["season"],limit=4)
             gc=st.columns(4)
